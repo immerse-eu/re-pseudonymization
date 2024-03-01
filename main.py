@@ -37,7 +37,12 @@ if __name__ == '__main__':
                 file_data = pd.read_excel(os.path.join(subdir, file))
                 # iterate through all rows of the id file and replace corresponding ids with new pseudonyms
                 for index, row in id_data.iterrows():
-                    file_data.replace(row.iloc[0], row.iloc[1], inplace=True)
+                    # replace values in participant_id column for sensing data
+                    if file in sensing_file_names:
+                        file_data["participant_id"].replace(row.iloc[0], row.iloc[1], inplace=True)
+                    # replace values in pseudonym column for TherapyDesigner data
+                    if file in therapy_designer_file_names:
+                        file_data["pseudonym"].replace(row.iloc[0], row.iloc[1], inplace=True)
 
                     # print every 50 rows a message
                     if index % 50 == 0:
