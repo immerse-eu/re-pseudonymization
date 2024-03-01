@@ -1,0 +1,20 @@
+General description:
+This script reads is sensing data and therapydesigner data and performs a re-pseudonymization with a list of original and new pseudonyms. Additionally, columns like site or movisensXS_id are removed from the data files.
+
+---
+Details for functions in main.py:
+
+1. function -> main
+The id file with pseudonyms and re-pseudonyms is read and for each of the data files the original ids are replaced with the new pseudonyms.
+
+
+---
+Necessary files in /input folder:
+-Immerse-IDs_for_repseudo.csv or Immerse-IDs_for_repseudo.xlsx with original ids in the first column and the re-pseudonymized ids in the second column
+-The master_files (with all participants and sites) for movisensXS Sensingdata (Master_Activity.xlsx, Master_AppUsage.xlsx, ...) in subfolder sensing_data/
+-The flattened TherapyDesigner data files without test rows/ids in xlsx format (Lothian_final.xlsx, Bierbeek_final.xlsx, ...) in subfolder TherapyDesigner_data/
+
+---
+Important:
+
+
