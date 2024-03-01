@@ -1,24 +1,6 @@
 import pandas as pd
 import os
 import openpyxl
-import random
-import string
-
-
-# ToDo: Delete this method and remove comment to read .csv file in with re-pseudonymization from Threuhandstelle at UKER
-def create_new_pseudonyms(filename):
-    # read id data in
-    id_data = pd.read_excel("./input/" + filename)
-
-    # create new pseudonyms for original participant_ids
-    for index, row in id_data.iterrows():
-        id_data.loc[index, 1] = project_re_pseudo_id + ''.join(
-            random.choices(string.ascii_letters + string.digits, k=16))
-
-    # write id file with
-    id_data.to_excel("./output/All_IDs_for_repseudo.xlsx", index=False)
-
-    return id_data
 
 
 if __name__ == '__main__':
@@ -42,9 +24,8 @@ if __name__ == '__main__':
     if not os.path.exists(therapy_desinger_data_output):
         os.makedirs(therapy_desinger_data_output)
 
-    id_data = create_new_pseudonyms("Immerse-IDs_for_repseudo.xlsx")
     # read in id data
-    #id_data = pd.read_csv(id_filename)
+    id_data = pd.read_csv("./input/" + id_filename)
 
     # iterate through subfolders and included files
     for subdir, dirs, files in os.walk("./input"):
